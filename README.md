@@ -8,14 +8,8 @@ This theme was developed based on Geeky Hugo - a beautiful HUGO theme for person
 ![](screenshots/aicurious.png)
 
 ---
-
-<p align="center">
- 
-![geeky-hugo-startup-theme](https://user-images.githubusercontent.com/17677384/140605658-0c68cf6c-d15a-4f0d-8e66-1060ce636d20.png)
-</p>
-
----
 ## Features
+
 - Google analytics  support
 - Image optimize  with hugo pipe
 - CSS and JS bundle with hugo pipe
@@ -24,7 +18,7 @@ This theme was developed based on Geeky Hugo - a beautiful HUGO theme for person
 - Google font loads from webfont loader
 - Caching enable
 - Color and fonts variable in config file
-- Contact form Support
+- Contact form support
 - Search by fuse.js and mark.js
 - Mailchimp integrate
 - GDPR consent enable
@@ -32,6 +26,12 @@ This theme was developed based on Geeky Hugo - a beautiful HUGO theme for person
 - Open graph meta tag
 - Twitter card meta tag
 
+**New:**
+
+- MathJax
+- Buy me a coffee
+- Subscription form
+- New font and styles
 
 ## Local development
 
@@ -47,29 +47,6 @@ $ hugo server --themesDir ../..
 ```
 Or Check out [Full Documentation](https://docs.gethugothemes.com/geeky/?ref=github).
 
-## Content Management System
-
-[![import to
-Forestry](https://assets.forestry.io/import-to-forestryK.svg)](https://app.forestry.io/quick-start?repo=gethugothemes/geeky-hugo&engine=hugo&version=0.87.0)
-
-This project has been pre-configured to work with [Forestry](https://forestry.io) a git-based CMS, [import your
-repository in Forestry](https://app.forestry.io/quick-start?repo=gethugothemes/geeky-hugo&engine=hugo&version=0.87.0) and
-you will be able to edit and preview your site ✨.
-
-Any changes you make in Forestry will be committed back to the repo and deployed if you use [Netlify](#netlify).
-## Deployment and hosting
-
-[![Deploy to
-Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gethugothemes/geeky-hugo)
-
-Follow the steps.
-
-## Prefer a video? (Hugo + Netlify + Forestry)
-Build your website with **geeky hugo** theme by following these easy steps (No Coding Required!)
-[Video Tutorial](https://youtu.be/ResipmZmpDU).
-
-
-<!-- licence -->
 ## License
 
 Copyright &copy; Designed by [Themefisher](https://themefisher.com) & Developed by
@@ -80,7 +57,6 @@ Copyright &copy; Designed by [Themefisher](https://themefisher.com) & Developed 
 **Image license:** The images are only for demonstration purposes. They have their licenses. We don't have permission to
 share those images.
 
-<!-- resources -->
 ## Special Thanks
 - [Bootstrap](https://getbootstrap.com)
 - [Font Awesome Icons](https://fontawesome.com)
