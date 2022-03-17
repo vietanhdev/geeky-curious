@@ -1,0 +1,71 @@
+<div class="course-sidebar collapse show" id="course-sidebar">
+    <h6 class="d-block mb-4">
+      {{ .course_data.title }}
+    </h6>
+    <div id="course-sidebar-menu" class="lesson-list">
+      <ol>
+        {{ range .course_data.lessons }}
+        <li>
+          <a href="{{ .url }}" class="{{ if eq .url $.page_data.slug}} active {{ end }}"> {{ .title }} </a>
+          {{ if .lessons }}
+            <ol>
+            {{ range .lessons }}
+              <li><a href="{{ .url }}" class="{{ if eq .url $.page_data.slug}} active {{ end }}"> {{ .title }} </a></li>
+            {{ end }}
+            </ol>
+          {{ end }}
+        </li>
+        {{ end}}
+      </ol>
+    </div>
+</div>
+
+<style>
+  #course-sidebar-menu {
+    min-width: 300px;
+    max-width: 300px;
+  }
+  .course-sidebar {
+    padding-right: 1rem;
+  }
+  .lesson-list li {
+    display: block;
+    padding: 0.2rem;
+  }
+  .lesson-list ol {
+    list-style: none;
+    counter-reset: steps;
+  }
+  .lesson-list ol li {
+    counter-increment: steps;
+    color: #05004f;
+  }
+  .lesson-list  > ol > li > a {
+    color: #05004f;
+    font-weight: bold;
+  }
+  .lesson-list  > ol > li > ol li a {
+    color: #0b00a4;
+    font-weight: normal;
+  }
+  .lesson-list ol li::before {
+    content: counter(steps);
+    margin-right: 0.5rem;
+    background: #05004f;
+    color: white;
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: 50%;
+    display: inline-grid;
+    place-items: center;
+    line-height: 1.2em;
+  }
+  .lesson-list ol ol li::before {
+    background: rgb(6, 69, 0);
+    margin-left: 1rem;
+  }
+  .lesson-list a.active {
+    color: #a2004c;
+    text-decoration: underline;
+  }
+</style>

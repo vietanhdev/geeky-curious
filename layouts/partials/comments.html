@@ -1,0 +1,6 @@
+<script>talkyardServerUrl='{{ .Site.Params.talkyardServerUrl }}';</script>
+<script async defer src="{{ .Site.Params.talkyardScriptUrl }}"></script>
+<!-- You can specify a per page discussion id on the next line, if your URLs might change. -->
+<div class="talkyard-comments" data-discussion-id="{{ .Params.discussionId }}" style="margin-top: 45px;">
+<noscript>Please enable Javascript to view comments.</noscript>
+</div>

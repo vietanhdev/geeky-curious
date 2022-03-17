@@ -1,0 +1,212 @@
+{{ define "main" }}
+
+<!-- checking blog / notes -->
+{{ if or (eq .Section "post") (eq .Section "posts") (eq .Section "blog") (eq .Section "notes") (eq .Section "blogs") (eq .Section "news") (eq .Section "categories") (eq .Section "tags" ) }}
+
+<!--=================== section start ===================-->
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mb-5 mb-lg-0">
+        <!-- image path -->
+        {{ $imagePath:= .Params.image }}
+        {{ if $imagePath }}
+        <div class="position-relative">
+          <!-- image CDN -->
+          {{ if hasPrefix $imagePath "http" }}
+          <img src="{{ $imagePath | safeURL }}" alt="{{ .Title }}"
+            class="img-fluid mb-5 w-100 rounded-4">
+          {{ else }}
+          <!-- /image cdn -->
+
+          <!-- image processing for multiple device -->
+          {{ if or (strings.HasSuffix $imagePath "svg") (strings.HasSuffix $imagePath "gif") }}
+            <img class="img-fluid mb-5 w-100 rounded-4"
+              src="{{ $imagePath }}" alt="{{.Title}}">
+          {{ else }}
+
+          {{ if hasPrefix $imagePath "/"}}
+            {{ $image := .Resources.GetMatch (path.Split $imagePath).File }}
+            {{ if $image }}
+              {{ $imageFallback:= $image.Resize "1400x" }}
+              {{ $imageXL:= $image.Resize "1400x webp" }}
+              {{ $imageLG:= $image.Resize "1000x webp" }}
+              {{ $imageMD:= $image.Resize "800x webp" }}
+              {{ $imageSM:= $image.Resize "600x webp" }}
+              <picture>
+                <source srcset="{{ $imageSM.RelPermalink }}" media="(max-width: 575px)">
+                <source srcset="{{ $imageMD.RelPermalink }}" media="(max-width: 767px)">
+                <source srcset="{{ $imageLG.RelPermalink }}" media="(max-width: 992px)">
+                <source srcset="{{ $imageXL.RelPermalink }}">
+                <img class="img-fluid mb-5 w-100 rounded-4"
+                  src="{{$imageFallback.RelPermalink}}" alt="{{.Title}}" width="{{$image.Width}}"
+                  height="{{$image.Height}}">
+              </picture>
+            {{ else }}
+              {{ if fileExists (add `assets/` $imagePath) }}
+                {{ $image:= resources.Get $imagePath }}
+                {{ $imageFallback:= $image.Resize "1400x" }}
+                {{ $imageXL:= $image.Resize "1400x webp" }}
+                {{ $imageLG:= $image.Resize "1000x webp" }}
+                {{ $imageMD:= $image.Resize "800x webp" }}
+                {{ $imageSM:= $image.Resize "600x webp" }}
+                <picture>
+                  <source srcset="{{ $imageSM.RelPermalink }}" media="(max-width: 575px)">
+                  <source srcset="{{ $imageMD.RelPermalink }}" media="(max-width: 767px)">
+                  <source srcset="{{ $imageLG.RelPermalink }}" media="(max-width: 992px)">
+                  <source srcset="{{ $imageXL.RelPermalink }}">
+                  <img class="img-fluid mb-5 w-100 rounded-4"
+                    src="{{$imageFallback.RelPermalink}}" alt="{{.Title}}" width="{{$image.Width}}"
+                    height="{{$image.Height}}">
+                </picture>
+              {{ else }}
+                <strong class="text-danger">`{{$imagePath}}` doesn't exist</strong>
+              {{ end }}
+            {{ end }}
+          {{ else }}
+            {{ if fileExists (add `assets/` $imagePath) }}
+              {{ $image:= resources.Get $imagePath }}
+              {{ $imageFallback:= $image.Resize "1400x" }}
+              {{ $imageXL:= $image.Resize "1400x webp" }}
+              {{ $imageLG:= $image.Resize "1000x webp" }}
+              {{ $imageMD:= $image.Resize "800x webp" }}
+              {{ $imageSM:= $image.Resize "600x webp" }}
+              <picture>
+                <source srcset="{{ $imageSM.RelPermalink }}" media="(max-width: 575px)">
+                <source srcset="{{ $imageMD.RelPermalink }}" media="(max-width: 767px)">
+                <source srcset="{{ $imageLG.RelPermalink }}" media="(max-width: 992px)">
+                <source srcset="{{ $imageXL.RelPermalink }}">
+                <img class="img-fluid mb-5 w-100 rounded-4"
+                  src="{{$imageFallback.RelPermalink}}" alt="{{.Title}}" width="{{$image.Width}}"
+                  height="{{$image.Height}}">
+              </picture>
+            {{ else }}
+              <strong class="text-danger">`{{$imagePath}}` doesn't exist</strong>
+            {{ end }}
+          {{ end }}
+          {{ end }}
+          <!-- /image processing for multiple device -->
+          {{ end }}
+          <ul class="list-inline card-badge">
+            {{ range .Params.categories }}
+            <li class="list-inline-item">
+              <a href="{{`categories/` | relLangURL}}{{. | lower | urlize}}" class="badge badge-primary py-1">{{. | title}}</a>
+            </li>
+            {{ end }}
+          </ul>
+        </div>
+        {{ else }}
+        {{ range .Params.categories }}
+        <a href="{{`categories/` | relLangURL}}{{. | lower | urlize}}" class="badge badge-primary mb-4 d-inline-block">{{. | title}}</a>
+        {{ end }}
+        {{ end }}
+        <h1 class="h3 mb-4">{{.Title | markdownify}}</h1>
+        <ul class="list-inline card-meta d-flex align-items-center mb-4">
+          <li class="list-inline-item d-flex align-items-center">
+            <i class="fas fa-user me-2"></i>
+            <a href="{{`about` | relLangURL}}">{{site.Params.author}}</a>
+          </li>
+          <li class="list-inline-item d-flex align-items-center">
+            <i class="fas fa-calendar me-2"></i>
+            <span>{{ time.Format ":date_long" .PublishDate }}</span>
+          </li>
+        </ul>
+        <div class="content drop-cap">{{.Content}}</div>
+        <!-- disqus comments -->
+        {{ if .Site.DisqusShortname }}
+        <div class="border rounded p-4">
+          {{ template "_internal/disqus.html" . }}
+        </div>
+        {{ end }}
+        {{ partial "comments" . }}
+      </div>
+      <!-- sidebar widgets -->
+      <aside class="col-lg-4">
+        {{ $widget:= site.Params.widgets.sidebar }}
+        {{ partialCached "widgets/widget-wrapper" ( dict "Widgets" $widget "Scope" . )}}
+      </aside>
+    </div>
+  </div>
+</section>
+<!--=================== section end ===================-->
+
+<!--=================== section start ===================-->
+<section class="section-sm pt-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title">
+          <h2 class="h4 title-border">Related Posts</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- related post -->
+    <div class="row">
+      {{ $related := (where site.RegularPages ".Section" "==" .Section) | intersect (where site.RegularPages ".Title" "!=" .Title) | union (site.RegularPages.Related . ) }}
+      {{ range first 3 $related }}
+      <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+      {{ .Render "post" }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+<!--=================== section end ===================-->
+
+{{ else if or (eq .Section "courses") (eq .Section "course") }}
+
+<!--=================== section start ===================-->
+<section class="section-sm" style="padding-top: 2rem;">
+  <div class="container">
+    <button class="btn btn-primary btn-sm mb-4" style="min-width: 280px;" type="button" data-bs-toggle="collapse" data-bs-target="#course-sidebar" aria-controls="course-sidebar" aria-expanded="true" aria-label="Toggle navigation">
+      <i class="fas fa-align-left"></i>
+      <span>Course Content</span>
+    </button>
+    <a href="/courses/" class="btn btn-light btn-sm mb-4 d-none d-md-block float-end" type="button">
+      <i class="fas fa-arrow-left"></i>
+      <span>Courses</span>
+    </a>
+    <div  style="display: flex; align-items: stretch;">
+      <!-- sidebar widgets -->
+      {{ $pageParams:= .Params}}
+      {{ range $.Site.Data.courses }}
+        {{ if eq $pageParams.course_id .course_id }}
+          {{ partial "widgets/course-toc" (dict "course_data" . "page_data" $pageParams) }}
+        {{ end }}
+      {{ end }}
+      <div class="mb-5 mb-lg-0">
+        <h1 class="h3 mb-4">{{.Title | markdownify}}</h1>
+        <div class="content drop-cap">{{.Content}}</div>
+        <!-- disqus comments -->
+        {{ if .Site.DisqusShortname }}
+        <div class="border rounded p-4">
+          {{ template "_internal/disqus.html" . }}
+        </div>
+        {{ end }}
+        {{ partial "comments" . }}
+      </div>
+    </div>
+  </div>
+</section>
+<!--=================== section end ===================-->
+
+<!-- regular page -->
+{{ else }}
+
+{{ partial "page-header.html" . }}
+<section class="section-sm">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <div class="content">
+          {{.Content}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+<!-- /regular page -->
+
+{{ end }}

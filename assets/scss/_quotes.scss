@@ -1,0 +1,37 @@
+blockquote {
+    border-radius: 0.5rem;
+    font-family: var(--font);
+    font-style: italic;
+    padding: 1rem 1rem 2rem 4rem;
+    border-left: 8px solid var(--bg);
+    position: relative;
+    background: rgba(0, 0, 0, 0.05);
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+blockquote > p::after, blockquote > p::before {
+    font-family: "font awesome 5 free";
+    font-weight: 900;
+    border: 0;
+    position: absolute;
+    font-size: 35px;
+    color: #0059ad;
+}
+blockquote > p::before {
+    content: '\f10d';
+    left: 1rem;
+    top: -0.5rem;
+}
+blockquote > p::after {
+    content: '\f10e';
+    bottom: 0.5rem;
+    right: 1rem;
+}
+blockquote span {
+    display: block;
+    color:  var(--header-text);
+    font-style: normal;
+    font-weight: bold;
+    margin-top: 0.25rem;
+}

@@ -1,0 +1,62 @@
+<div class="card">
+  <!-- image path -->
+  {{ $imagePath:= .image }}
+  {{ if $imagePath }}
+  <div class="mb-4 position-relative">
+    <!-- image CDN -->
+    {{ if or (hasPrefix $imagePath "http") (hasPrefix $imagePath "/") }}
+    <img loading="lazy" decoding="async" src="{{ $imagePath | safeURL }}" alt="{{ .title }}"
+      class="img-fluid w-100 rounded-4">
+    {{ else }}
+    <!-- /image cdn -->
+
+    <!-- image processing for single device -->
+    {{ if hasPrefix $imagePath "/" }}
+      {{ $image := .Resources.GetMatch (path.Split $imagePath).File }}
+      {{ $imageFallback:= $image.Resize "650x" }}
+      {{ $imageLG:= $image.Resize "650x webp" }}
+      {{ $imageMD:= $image.Resize "600x webp" }}
+      {{ $imageSM:= $image.Resize "545x webp" }}
+      <picture>
+        <source srcset="{{ $imageSM.RelPermalink }}" media="(max-width: 575px)">
+        <source srcset="{{ $imageMD.RelPermalink }}" media="(max-width: 767px)">
+        <source srcset="{{ $imageLG.RelPermalink }}">
+        <img loading="lazy" decoding="async" class="img-fluid w-100 rounded-4" src="{{$imageFallback.RelPermalink}}"
+          alt="{{.title}}" width="{{$image.Width}}" height="{{$image.Height}}">
+      </picture>
+    {{ else }}
+      {{ $image:= resources.Get $imagePath }}
+      {{ $imageFallback:= $image.Resize "650x" }}
+      {{ $imageLG:= $image.Resize "650x webp" }}
+      {{ $imageMD:= $image.Resize "600x webp" }}
+      {{ $imageSM:= $image.Resize "545x webp" }}
+      <picture>
+        <source srcset="{{ $imageSM.RelPermalink }}" media="(max-width: 575px)">
+        <source srcset="{{ $imageMD.RelPermalink }}" media="(max-width: 767px)">
+        <source srcset="{{ $imageLG.RelPermalink }}">
+        <img loading="lazy" decoding="async" class="img-fluid w-100 rounded-4" src="{{$imageFallback.RelPermalink}}"
+          alt="{{.title}}" width="{{$image.Width}}" height="{{$image.Height}}">
+      </picture>
+    {{ end }}
+    <!-- /image processing for multiple device -->
+    {{ end }}
+  </div>
+  {{ end }}
+  <div class="card-body">
+    <h3 class="h6">
+      <a class="title-linked" href="{{.url}}">{{.title | markdownify}}</a>
+    </h3>
+    <ul class="list-inline card-meta d-flex align-items-center mb-3">
+      <li class="list-inline-item d-flex align-items-center">
+        <i class="fas fa-user me-2"></i>
+        {{.authors}}
+      </li>
+      <li class="list-inline-item d-flex align-items-center">
+        <i class="fas fa-calendar me-2"></i>
+        <span>{{ time.Format ":date_long" .date }}</span>
+      </li>
+    </ul>
+    <p class="card-text mb-4">{{ .intro }}</p>
+    <a href="{{.url}}" class="btn btn-outline-primary btn-sm">Access Course</a>
+  </div>
+</div>

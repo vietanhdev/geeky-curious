@@ -1,0 +1,56 @@
+{{- $s := .Site.Params }}
+{{- $p := .Params }}
+
+<!DOCTYPE html>
+<html lang="{{ site.LanguageCode | default `en-US` }}">
+
+<head>
+	{{ partial "head.html" . }}
+
+	<!-- cache partial only in production -->
+	{{ if hugo.IsProduction }}
+	{{ partialCached "style.html" . }}
+	{{ else }}
+	{{ partial "style.html" . }}
+	{{ end }}
+</head>
+
+{{- $maxCodeLines := 100 }}
+{{- with $s.codeMaxLines }}
+{{- $maxCodeLines = . }}
+{{- end }}
+{{- with $p.codeMaxLines }}
+{{- $maxCodeLines = . }}
+{{- end }}
+{{- $codeLineNumbers := false }}
+{{ with $s.codeLineNumbers }}
+{{- $codeLineNumbers = . }}
+{{ end }}
+{{ with $p.codeLineNumbers }}
+{{- $codeLineNumbers = . }}
+{{ else }}
+{{ if eq $p.codeLineNumbers false }}
+	{{- $codeLineNumbers = false }}
+{{ end }}
+{{ end }}
+
+<body data-code="{{ $maxCodeLines }}" data-lines="{{ $codeLineNumbers }}">
+	<!-- cache partial only in production -->
+	{{ if hugo.IsProduction }}
+	{{ partialCached "preloader.html" . }}
+	{{ partial "header.html" . }}
+	{{ else }}
+	{{ partial "preloader.html" . }}
+	{{ partial "header.html" . }}
+	{{ end }}
+
+	<main>
+		{{ block "main" . }}{{ end }}
+	</main>
+
+	<!-- cache partial only in production -->
+	{{ partial "script.html" . }}
+	{{ partial "footer.html" . }}
+</body>
+
+</html>
