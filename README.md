@@ -28,7 +28,8 @@ This theme was developed based on Geeky Hugo - a beautiful HUGO theme for person
 
 **New:**
 
-- MathJax
+- Responsive images
+- Support math equations with MathJax
 - Buy me a coffee
 - Subscription form
 - New font and styles
