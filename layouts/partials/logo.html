@@ -26,8 +26,8 @@
 {{ end }}
 
 <!-- Hardcode (vietanhdev): Fixed logo width/height -->
-<img loading="preload" decoding="async" class="img-fluid" {{if ne $logoExt `.svg`}}
-  width="220px" height="40px" {{end}} src="{{.Scratch.Get `logo`}}"
+<img id="header-logo" loading="preload" decoding="async" class="img-fluid"
+  width="240px" src="{{.Scratch.Get `logo`}}"
   alt="{{ site.Title }}" onerror="this.onerror=null;this.src='{{.Scratch.Get `logo_fallback`}}'">
 {{ else }}
 <strong class="text-danger">`{{$logoPath}}` doesn't exist</strong>
@@ -39,4 +39,4 @@
 <!-- logo title -->
 {{ else }}
 {{ site.Title | markdownify }}
-{{ end }}
+{{ end }} 
