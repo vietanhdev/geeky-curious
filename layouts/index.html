@@ -106,7 +106,9 @@
         <div class="mb-5">
           <a href="{{.link | absLangURL}}">
             {{ $image:= resources.Get .image }}
+            {{ if $image }}
             <img class="img-fluid w-100" width="858" height="123" src="{{ $image.RelPermalink }}" alt="image" style="border-radius: 1rem; border: 2px solid #efefef">
+            {{ end }}
           </a>
         </div>
         {{ end }}

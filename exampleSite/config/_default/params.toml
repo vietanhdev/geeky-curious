@@ -1,0 +1,132 @@
+#################### default parameters ################################
+# favicon
+favicon = "images/favicon.png"
+# logo
+logo = "images/logo.png"
+# use `x` with logo_width, example: "100x".
+# Note: logo_width is not work with .svg file
+logo_width = "220px"
+# logo text will only show when logo is missing.
+logo_text = "Boilerplate"
+# navbar fixed to top
+navbar_fixed = false
+# OpenGraph / Twitter Card metadata
+description = "Blog about Sofware Development, AI and Computer Vision."
+author = "Viet-Anh Nguyen"
+image = "images/logo.png" # this image will be used as fallback if a page has no image of its own
+# contact info
+address = "Hanoi, Vietnam"
+email = "vietanh.dev@gmail.com"
+# contact form action
+contact_form_action = "https://formspree.io/xaypalea" # contact form works with https://formspree.io
+# search
+search = true
+
+# featured post title
+featured_post_title = "Featured Posts"
+recent_post_title = "Recent Posts"
+mainSections = ["blog"]
+# about widget content
+about_widget_content = "Blog about Sofware Development, AI and Computer Vision."
+# footer content
+footer_content = "Blog about Sofware Development, AI and Computer Vision."
+# copyright
+copyright = 'Copyright © 2022 Blog AICurious. All Rights Reserved.'
+
+# custom script on header, example: custom_script= "<script>console.log(\"Hello World\")</script>" 
+# custom_script= "<script>console.log(\"Hello World\")</script>"
+
+
+# Comment
+talkyardServerUrl = ""
+talkyardScriptUrl = ""
+
+# Buy me a coffee
+# Comment below line to disable
+buyMeACoffeeId = "vietanhdev"
+
+# Google Adsense
+# adsenseDataAdClient = "ca-pub-9046870770761569"
+
+codeLineNumbers = true
+
+
+# Preloader
+[preloader]
+enable = false
+preloader = "" # use jpg, png, svg or gif format.
+
+# Banner
+[banner]
+enable = true
+title_large = "Welcome **!**"
+title_small = "to AICurious Blog"
+image = "images/banner.png"
+background_image = "/images/banner-bg-shape.svg"
+content = "Let's build AI-powered software! This blog writes about Sofware Development, AI and Computer Vision."
+button_label = "Know About Me"
+button_link = "about/"
+
+# Advertise
+[advertisement]
+image = "images/daisykit.png"
+link = "/posts/2022-01-13-daisykit/"
+
+# cookies
+[cookies]
+enable = true
+expire_days = 30
+content = "This site uses cookies. By continuing to use this website, you agree to their use."
+button = "I Accept"
+
+######################## sidebar widgets #########################
+[widgets]
+sidebar = ["about", "newsletter", "recent-post", "categories"]
+# available widget : about,categories,newsletter,recent-post
+
+
+# Subscription
+[subscription]
+enable = false
+# mailchimp subsciption
+mailchimp_form_action = "" # replace this url with yours
+mailchimp_form_name = "" # replace this code with yours
+
+
+############################# social site ########################
+# [[social]]
+# title = "facebook"
+# icon = "fab fa-facebook" # themify icon : https://themify.me/themify-icons
+# link = "#"
+
+[[social]]
+title = "twitter"
+icon = "fab fa-twitter" # themify icon : https://themify.me/themify-icons
+link = "https://twitter.com/vietanhdev"
+
+# [[social]]
+# title = "instagram"
+# icon = "fab fa-instagram" # fontawesome icon pack : https://fontawesome.com/icons/
+# link = "#"
+
+[[social]]
+title = "github"
+icon = "fab fa-github" # fontawesome icon pack : https://fontawesome.com/icons/
+link = "https://github.com/vietanhdev"
+
+[[social]]
+title = "linkedin"
+icon = "fab fa-linkedin" # fontawesome icon pack : https://fontawesome.com/icons/
+link = "https://www.linkedin.com/in/vietanhdev/"
+
+# customize your color and font from here.
+[variables]
+color_primary = "#0059ad"
+body_color = "#FFF"
+text_color = "#051e50"
+text_dark = "#00274f"
+text_light = "#999"
+border_color = "#E1E1E1"
+black = "#000"
+white = "#FFF"
+light = "#f2f2f2"

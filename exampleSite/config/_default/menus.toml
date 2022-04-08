@@ -1,0 +1,81 @@
+############# English navigation ##############
+
+# main menu
+[[main]]
+  name = "Articles"
+  url = ""
+  weight = 10
+
+[[main]]
+  name = "Projects"
+  url = "/portfolio/"
+  weight = 50
+
+[[main]]
+  name = "About"
+  url = "/about/"
+  weight = 60
+
+[[main]]
+  name = "Links"
+  url = "/links/"
+  identifier = "Links"
+  weight = 60
+
+  [[main]]
+    parent = "Links"
+    name = "Contact Page"
+    url = "/contact/"
+    weight = -10
+
+  # [[main]]
+  #   parent = "Links"
+  #   name = "Tags"
+  #   url = "tags/"
+  #   weight = 1
+
+  # [[main]]
+  #   parent = "Links"
+  #   name = "Categories"
+  #   url = "categories/"
+  #   weight = 2
+
+  [[main]]
+    name = "Daisykit Project"
+    url = "https://daisykit.org"
+    parent = "Links"
+    weight = 10
+
+  [[main]]
+    name = "VNOpenAI Team"
+    url = "https://vnopenai.github.io"
+    parent = "Links"
+    weight = 20
+
+  [[main]]
+    name = "VIA - Vietnam Autonomous"
+    url = "https://via.makerviet.org"
+    parent = "Links"
+    weight = 30
+
+
+# footer menu
+[[footer]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[footer]]
+name = "About"
+url = "about/"
+weight = 2
+
+[[footer]]
+name = "Contact"
+url = "contact/"
+weight = 3
+
+[[footer]]
+name = "Privacy Policy"
+url = "privacy-policy/"
+weight = 4
