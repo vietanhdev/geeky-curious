@@ -192,15 +192,16 @@ select {
   }
 
   .title-border::before {
-    left: 10px;
+    left: 2rem;
   }
 
   &:not(:last-child) {
-    margin-bottom: 30px;
+    margin-bottom: 2rem;
   }
 
   &-title {
-    margin-bottom: 45px;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
   }
 }
 

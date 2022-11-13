@@ -20,7 +20,7 @@ light = "#f2f2f2"
 
 # font variables
 # base font size for full website, 
-font_size = "18px" # default is 16px
+font_size = "16px" # default is 16px
 
 # Font Scale Sizes
 # "minorSecond": 1.067,

@@ -11,7 +11,7 @@ logo_text = "Boilerplate"
 # navbar fixed to top
 navbar_fixed = false
 # OpenGraph / Twitter Card metadata
-description = "Blog about Sofware Development, AI and Computer Vision."
+description = "Software Development, Artificial Intelligence and Computer Vision."
 author = "Viet-Anh Nguyen"
 image = "images/logo.png" # this image will be used as fallback if a page has no image of its own
 # contact info
@@ -27,9 +27,9 @@ featured_post_title = "Featured Posts"
 recent_post_title = "Recent Posts"
 mainSections = ["blog"]
 # about widget content
-about_widget_content = "Blog about Sofware Development, AI and Computer Vision."
+about_widget_content = "Software Development, Artificial Intelligence and Computer Vision."
 # footer content
-footer_content = "Blog about Sofware Development, AI and Computer Vision."
+footer_content = "Software Development, Artificial Intelligence and Computer Vision."
 # copyright
 copyright = 'Copyright © 2022 Blog AICurious. All Rights Reserved.'
 
