@@ -8,6 +8,12 @@
   h1 strong {
     color: $color-primary;
   }
+
+  .banner-img {
+    @include desktop {
+      display: none;
+    }
+  }
 }
 
 // list styled

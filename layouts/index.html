@@ -24,7 +24,7 @@
         {{ $imageWebp:= $image.Resize $options }}
         <img width="{{$image.Width}}" height="{{$image.Height}}"
           src="{{ $imageWebp.RelPermalink }}" onerror="this.onerror=null;this.src='{{$image.RelPermalink}}'"
-          alt="banner-img" class="img-fluid">
+          alt="banner-img" class="img-fluid banner-img">
       </div>
       {{ end }}
     </div>
