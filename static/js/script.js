@@ -24,8 +24,7 @@ window.addEventListener('load', function() {
 
 
   // Collapse course menu on small screen
-  if  (screen.width < 600) {
-    // console.log('Small screen detected => Collapse course sidebar');
+  if  (screen.width < 600 && document.getElementById("course-sidebar")) {
     document.getElementById("course-sidebar").classList.remove('show');
   }
 });
