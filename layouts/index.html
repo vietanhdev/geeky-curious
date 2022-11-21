@@ -7,6 +7,7 @@
 {{ $bgImage:= resources.Get .background_image }}
 <section class="banner text-center text-lg-start" style="background-image: url('{{ $bgImage.RelPermalink }}');">
   <div class="container">
+    <div id="banner-particles" style="position:absolute; width: 100%; height: 100%;"></div>
     <div class="row align-items-center flex-column-reverse flex-lg-row">
       <div class="col-lg-6 mb-5 mb-lg-0">
         {{ with .title_large }}<h1 class="banner-title mb-0">{{ . | markdownify }}</h1>{{ end }}
@@ -32,6 +33,13 @@
 </section>
 {{ end }}
 {{ end }}
+<script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js">
+</script>
+<script>
+particlesJS.load('banner-particles', '/particles-js.json', function() {
+  console.log('callback - particles.js config loaded');
+});
+</script>
 <!--=================== banner section end ===================-->
 
 <!--=================== blog section start ===================-->
